@@ -1,11 +1,4 @@
 
-/* Скидання базових стилів */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
     background: linear-gradient(135deg, #d4c5a9 0%, #b8a789 50%, #9d8b6f 100%);
