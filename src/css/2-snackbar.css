@@ -1,0 +1,562 @@
+
+/* Скидання базових стилів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #d4c5a9 0%, #b8a789 50%, #9d8b6f 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-y: auto;
+    animation: backgroundShift 20s ease infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Фонова текстура старого паперу */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, .03) 2px, rgba(0, 0, 0, .03) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, .03) 2px, rgba(0, 0, 0, .03) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+    animation: textureFloat 30s linear infinite;
+}
+
+@keyframes textureFloat {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(10px, 10px);
+    }
+}
+
+/* Контейнер форми */
+.form {
+    background: linear-gradient(to bottom, #f4ead5 0%, #e8dcc3 50%, #d9c9a8 100%);
+    padding: 60px 45px 45px;
+    border-radius: 8px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    border: 2px solid #8b7355;
+    animation: formAppear 0.8s ease-out, formFloat 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes formAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes formFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Ефект обпаленого паперу по краях з анімацією */
+.form::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle at 15% 25%, transparent 40%, rgba(139, 115, 85, 0.4) 41%, transparent 42%),
+        radial-gradient(circle at 85% 15%, transparent 35%, rgba(139, 115, 85, 0.4) 36%, transparent 37%),
+        radial-gradient(circle at 70% 95%, transparent 45%, rgba(139, 115, 85, 0.4) 46%, transparent 47%),
+        radial-gradient(circle at 5% 75%, transparent 30%, rgba(139, 115, 85, 0.4) 31%, transparent 32%);
+    border-radius: 8px;
+    z-index: -1;
+    filter: blur(1px);
+    animation: burnPulse 4s ease-in-out infinite;
+}
+
+@keyframes burnPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Плями з анімацією */
+.form::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 12%;
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle, rgba(101, 67, 33, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow:
+        -150px 100px 0 -12px rgba(101, 67, 33, 0.1),
+        100px 140px 0 -18px rgba(101, 67, 33, 0.08),
+        -60px -30px 0 -8px rgba(101, 67, 33, 0.12);
+    pointer-events: none;
+    animation: stainPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes stainPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Заголовок форми */
+.form-title {
+    color: #4a3829;
+    font-size: 2rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow: 1px 1px 8px rgba(139, 115, 85, 0.4), 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.form-title::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #8b7355, transparent);
+    margin: 15px auto 0;
+    animation: lineGrow 2s ease-out;
+}
+
+@keyframes lineGrow {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 150px;
+        opacity: 1;
+    }
+}
+
+/* Лейбли */
+.form>label {
+    display: block;
+    color: #4a3829;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.form>label:hover {
+    color: #6d5a44;
+    transform: translateX(3px);
+}
+
+/* Інпут для затримки */
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    background: #faf6ef;
+    border: 2px solid #a0896f;
+    border-radius: 4px;
+    color: #4a3829;
+    margin-bottom: 25px;
+    margin-top: 5px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #8b7355;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15), 0 0 15px rgba(139, 115, 85, 0.4);
+    transform: scale(1.02);
+    background: #ffffff;
+}
+
+input[type="number"]:hover {
+    border-color: #8b7355;
+}
+
+/* Fieldset для радіокнопок */
+fieldset {
+    border: 2px solid #a0896f;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(to bottom, #e8dcc3 0%, #d9c9a8 100%);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    animation: fieldsetSlide 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes fieldsetSlide {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+fieldset:hover {
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(139, 115, 85, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Легенда fieldset */
+legend {
+    color: #4a3829;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 5px 15px;
+    letter-spacing: 1px;
+    background: #f4ead5;
+    border: 2px solid #a0896f;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+legend:hover {
+    background: #faf6ef;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+}
+
+/* Контейнер для радіокнопок */
+fieldset label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+fieldset label:last-child {
+    margin-bottom: 0;
+}
+
+fieldset label:hover {
+    background: rgba(139, 115, 85, 0.15);
+    transform: translateX(5px);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+fieldset label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: #8b7355;
+    border-radius: 4px 0 0 4px;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+fieldset label:hover::before {
+    transform: scaleY(1);
+}
+
+/* Радіокнопки */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #8b7355;
+    border-radius: 50%;
+    background: #faf6ef;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+input[type="radio"]:hover {
+    border-color: #6d5a44;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(139, 115, 85, 0.3);
+}
+
+input[type="radio"]:checked {
+    background: #8b7355;
+    box-shadow: inset 0 0 0 4px #faf6ef;
+    animation: radioSelect 0.4s ease;
+}
+
+@keyframes radioSelect {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+input[type="radio"]:checked+span {
+    font-weight: bold;
+    color: #6d5a44;
+}
+
+/* Кнопка Submit */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: #faf6ef;
+    background: linear-gradient(to bottom, #8b7355 0%, #6d5a44 100%);
+    border: 2px solid #5a4a36;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    animation: buttonSlide 0.6s ease-out 0.4s backwards;
+}
+
+@keyframes buttonSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+button[type="submit"]:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to bottom, #9d856b 0%, #7d6a54 100%);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+button[type="submit"]:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Декоративна пляма на fieldset з анімацією */
+fieldset::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(101, 67, 33, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: spotFloat 5s ease-in-out infinite;
+}
+
+@keyframes spotFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-3px, 3px);
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+    .form {
+        padding: 50px 25px 35px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    input[type="number"],
+    button[type="submit"] {
+        font-size: 1rem;
+    }
+
+    fieldset {
+        padding: 15px;
+    }
+
+    legend {
+        font-size: 1rem;
+    }
+}
+
+/* Стилізація повідомлень iziToast */
+.iziToast {
+    font-family: 'Georgia', serif !important;
+    border-radius: 6px !important;
+    animation: toastSlide 0.5s ease-out !important;
+}
+
+@keyframes toastSlide {
+    0% {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.iziToast>.iziToast-body .iziToast-title {
+    color: #4a3829 !important;
+    font-weight: bold !important;
+}
+
+.iziToast>.iziToast-body .iziToast-message {
+    color: #4a3829 !important;
+    font-size: 1rem !important;
+}
+
+.iziToast-color-green {
+    background: linear-gradient(135deg, #d4e8d5 0%, #c3dcc3 100%) !important;
+    border: 2px solid #6b8b6b !important;
+}
+
+.iziToast-color-red {
+    background: linear-gradient(135deg, #e8d5d4 0%, #dcc3c3 100%) !important;
+    border: 2px solid #8b6b6b !important;
+}
